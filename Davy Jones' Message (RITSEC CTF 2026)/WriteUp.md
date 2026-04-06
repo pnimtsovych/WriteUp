@@ -42,3 +42,5 @@ After searching not in the packet list, but directly in the raw bytes, I managed
 <img width="1919" height="1024" alt="image" src="https://github.com/user-attachments/assets/01c307ba-3242-47d3-bda3-ca13c0dfcd8d" />
 
 After moving to the collected packet #143, it became clear that the RTPS message contained several DATA_FRAG fragments. Inside each fragment was serializedData, and the encapsulation format was defined as CDR_LE, i.e. the payload was a serialized binary object. The presence of HEARTBEAT_FRAG with the same writer (0x00001403) further confirmed that the same RTPS writer was transmitting a large sample, divided into ten parts.
+
+To verify the data, several (2–3) similar RTPS DATA_FRAG packets were additionally analyzed. The purpose of the verification was to confirm that the recorded behavior is a stable series of large samples, and not a single case.
