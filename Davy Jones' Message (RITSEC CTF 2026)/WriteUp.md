@@ -14,3 +14,8 @@ I began by checking the protocol hierarchy in Wireshark to understand the overal
 
 Analysis of the dialogs showed that the main exchange in the dump occurs between 10.42.0.11 and 10.42.0.10, and UDP statistics specified that this traffic is concentrated around port 17911. After that, I filtered the relevant stream and proceeded to analyze its content to determine the protocol used and find potentially hidden data.
 
+<img width="1919" height="1022" alt="image" src="https://github.com/user-attachments/assets/7fad3b2d-8ee4-4771-998e-13b62a137a80" />
+
+<img width="1919" height="1023" alt="image" src="https://github.com/user-attachments/assets/ed039dc1-ec06-4260-b31b-5bbc6d3facc8" />
+
+Since the RTPS stream contained fragmented data submessages, I concluded that the hidden content was likely embedded inside a larger serialized object rather than in ordinary plaintext packets. Therefore, the next step was to inspect the fragmented payload more closely and determine what type of data was being transmitted.
