@@ -24,3 +24,12 @@ Since the RTPS stream contained fragmented data submessages, I concluded that th
 
 A detailed look at one of the DATA_FRAG packets showed that the data was being transmitted in fragments by the same RTPS writer (0x00001403). The packet structure contained the fragmentStartingNum, fragmentsInSubmessage, fragmentSize, and sampleSize fields, with the total sample size being 36628 bytes. This confirmed that a large serialized object was being transmitted through this stream, which became the main target of further analysis.
 
+<img width="1919" height="1024" alt="image" src="https://github.com/user-attachments/assets/84f3db21-3eb5-4d18-bd88-719b94803c4a" />
+
+Inspecting a regular RTPS DATA packet showed that the payload was stored as serializedData using CDR_LE encapsulation. It also revealed a different writerEntityId than the fragmented stream, indicating that multiple RTPS writers were active and that not all packets carried the same type of data.
+
+0x00001403 - large DATA_FRAG, sampleSize 36628
+0x00001503 - smaller DATA with serializedData
+Conclusion:
+The main payload most likely carries exactly: 0x00001403
+
