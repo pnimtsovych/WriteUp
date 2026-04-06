@@ -37,3 +37,8 @@ Conclusion: The main payload most likely carries exactly: 0x00001403
 <img width="1919" height="1019" alt="image" src="https://github.com/user-attachments/assets/ae34af7f-871c-4bcf-beb6-7d1f47bbade8" />
 
 After searching not in the packet list, but directly in the raw bytes, I managed to get to the IPv4 fragment of a large message that Wireshark collected in frame #143. I used the query rgb for the search, since it is a characteristic name for the color field in structures such as point clouds and is a much more reliable indicator than short single-letter fields x, y or z. Strings like x, y and z began to appear in the content of this payload, which indicated the presence of structured coordinate fields. Together, this became another argument in favor of the fact that the stream is not transmitting plain text, but a serialized spatial object.
+
+
+<img width="1919" height="1024" alt="image" src="https://github.com/user-attachments/assets/01c307ba-3242-47d3-bda3-ca13c0dfcd8d" />
+
+After moving to the collected packet #143, it became clear that the RTPS message contained several DATA_FRAG fragments. Inside each fragment was serializedData, and the encapsulation format was defined as CDR_LE, i.e. the payload was a serialized binary object. The presence of HEARTBEAT_FRAG with the same writer (0x00001403) further confirmed that the same RTPS writer was transmitting a large sample, divided into ten parts.
