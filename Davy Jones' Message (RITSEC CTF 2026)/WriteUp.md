@@ -12,5 +12,5 @@ I began by checking the protocol hierarchy in Wireshark to understand the overal
 <img width="1919" height="784" alt="image" src="https://github.com/user-attachments/assets/6ea0c4df-0d86-4152-8634-7de0923e4809" />
 
 
-After reviewing the IPv4 conversation statistics, it became clear that the main data exchange was taking place between 10.42.0.11 and 10.42.0.10. It was also noticed that a significantly larger amount of data was transferred in the direction from 10.42.0.11 to 10.42.0.10, which indicated that the main payload could be transmitted on this channel.
+Analysis of the dialogs showed that the main exchange in the dump occurs between 10.42.0.11 and 10.42.0.10, and UDP statistics specified that this traffic is concentrated around port 17911. After that, I filtered the relevant stream and proceeded to analyze its content to determine the protocol used and find potentially hidden data.
 
