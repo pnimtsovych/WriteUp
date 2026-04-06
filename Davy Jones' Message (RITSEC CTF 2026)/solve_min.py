@@ -1,18 +1,4 @@
 #!/usr/bin/env python3
-"""Self-contained solver for Davy Jones' Message.
-
-No scapy required.
-Reads the pcap directly, reassembles IPv4 fragments,
-extracts RTPS DATA_FRAG for writer 0x00001403,
-parses PointCloud2-like CDR_LE payloads, and renders the hidden text.
-
-Usage:
-    python3 solve_min.py davy_jones_message.pcap
-
-Dependencies:
-    pip install numpy matplotlib
-"""
-
 from __future__ import annotations
 
 import collections
