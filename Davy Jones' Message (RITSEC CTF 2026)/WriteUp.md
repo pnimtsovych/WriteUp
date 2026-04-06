@@ -30,7 +30,7 @@ Inspecting a regular RTPS DATA packet showed that the payload was stored as seri
 
 
 
-0x00001403 - large DATA_FRAG, sampleSize 36628
-0x00001503 - smaller DATA with serializedData
+0x00001403 - large DATA_FRAG, sampleSize 36628;
+0x00001503 - smaller DATA with serializedData;
 Conclusion: The main payload most likely carries exactly: 0x00001403
 
