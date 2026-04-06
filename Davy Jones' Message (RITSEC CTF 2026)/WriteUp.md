@@ -44,3 +44,10 @@ After searching not in the packet list, but directly in the raw bytes, I managed
 After moving to the collected packet #143, it became clear that the RTPS message contained several DATA_FRAG fragments. Inside each fragment was serializedData, and the encapsulation format was defined as CDR_LE, i.e. the payload was a serialized binary object. The presence of HEARTBEAT_FRAG with the same writer (0x00001403) further confirmed that the same RTPS writer was transmitting a large sample, divided into ten parts.
 
 To verify the data, several (2–3) similar RTPS DATA_FRAG packets were additionally analyzed. The purpose of the verification was to confirm that the recorded behavior is a stable series of large samples, and not a single case.
+
+<img width="1919" height="1022" alt="image" src="https://github.com/user-attachments/assets/735e2838-b20c-4774-a39c-7939ff5caa8a" />
+
+To obtain the final message, I, together with the artificial intelligence, wrote a small Python script that collected IPv4 fragments, extracted the RTPS DATA_FRAG message from the main writer (0x00001403) and restored the serialized payload. The conclusion that this payload is point cloud data was not made by chance: during analysis in Wireshark, it became clear that a large fragmented CDR-serialized object was being transmitted, and fields such as x, y and z, characteristic of spatial coordinates, began to appear in its content. In addition, the structure of the restored data corresponded to the typical point cloud format, where each point is described by coordinates and an additional color value. Therefore, the restored payload was interpreted as point cloud data, after which an X-Z projection was constructed for the top layer. It was this visualization that revealed the hidden text.
+
+
+## FLAG: RS{D4vy_J0nes_Sp3aks_1n_5il3nce}
