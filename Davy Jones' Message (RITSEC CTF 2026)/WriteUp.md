@@ -28,8 +28,9 @@ A detailed look at one of the DATA_FRAG packets showed that the data was being t
 
 Inspecting a regular RTPS DATA packet showed that the payload was stored as serializedData using CDR_LE encapsulation. It also revealed a different writerEntityId than the fragmented stream, indicating that multiple RTPS writers were active and that not all packets carried the same type of data.
 
+
+
 0x00001403 - large DATA_FRAG, sampleSize 36628
 0x00001503 - smaller DATA with serializedData
-Conclusion:
-The main payload most likely carries exactly: 0x00001403
+Conclusion: The main payload most likely carries exactly: 0x00001403
 
