@@ -15,6 +15,7 @@ After isolating 41 matching packets, I compared them. The HTTP-like payload (POS
 Further analysis showed that the bytes payload[4:8] formed a sequence of values ​​of the form 123456 * n, so they could be used as a character ordering key. At the same time, the low-order byte of the IP Identification field, after XORing with 0x21, produced a readable ASCII character. Thus, each of the 41 packets contained exactly one flag character, and its position was determined separately:
 
 order = int.from_bytes(payload[4:8], "big") // 123456
+
 char = chr((ip_id & 0xff) ^ 0x21)
 
 To automate this process, I used a Python script called solve.py. The script went through all the packets in pcap, selected only those that contained the POST /api/v1/sync marker, extracted the order value from payload[4:8], took the low-order byte of the IP Identification, decoded the character via XOR with 0x21, then sorted all the characters by order and combined them into a final string.
