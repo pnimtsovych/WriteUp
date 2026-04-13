@@ -19,6 +19,12 @@ seed = ...
 
 flag = ...
 
+### What was in output.txt:
+
+large number seed = ...
+
+encrypted/scrambled flag in hex: flag = a9fa3c5e51d4cea498554399848ad14aa0764e15a6a2110b6613f5dc87fa70f17fafbba7eb5a2a5179
+
 
 
 
