@@ -25,7 +25,28 @@ large number seed = ...
 
 encrypted/scrambled flag in hex: flag = a9fa3c5e51d4cea498554399848ad14aa0764e15a6a2110b6613f5dc87fa70f17fafbba7eb5a2a5179
 
+### How is the seed formed
 
+#### Explain:
+
+I_LOVE_RNG is converted to a number
+
+this number is encrypted with RSA
+
+the result becomes the seed
+
+then the seed is encrypted again with enc_seed
+
+### How is the flag encrypted
+
+#### Explain:
+
+the flag is converted to bits
+
+the bits are shuffled 10 times
+for each step random.seed(seed * (i + 1)) is used
+
+so if you restore the seed, you can repeat the permutations
 
 
 In the task, we were given an archive with a Python script where the message and flag are shuffled using `random.shuffle`, and RSA is used to generate the seed.
