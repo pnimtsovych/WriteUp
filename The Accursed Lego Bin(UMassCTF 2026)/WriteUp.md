@@ -88,6 +88,11 @@ The script (solve.py)below:
 5. prints the final flag.
 
 
+<img width="1919" height="169" alt="image" src="https://github.com/user-attachments/assets/6c75ccae-14d4-46b5-bad6-a418bc5db6c9" />
+
+## FLAG: UMASS{tH4Nk5_f0R_uN5CR4m8L1nG_mY_M3554g3}
+
+
 
 
 
