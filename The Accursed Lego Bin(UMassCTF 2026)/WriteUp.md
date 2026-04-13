@@ -49,7 +49,45 @@ for each step random.seed(seed * (i + 1)) is used
 so if you restore the seed, you can repeat the permutations
 
 
-In the task, we were given an archive with a Python script where the message and flag are shuffled using `random.shuffle`, and RSA is used to generate the seed.
-At first glance, it seems that we need to break RSA, but in fact the implementation is vulnerable because the message is very small and there is no padding.
-The goal is to recover the seed, and then undo the bit shuffling back.
+## Recovering the seed
+
+After computing the exact integer 49th root of `enc_seed`, we recover the original message:
+
+`b'I_LOVE_RNG'`
+
+Once `m` is known, the seed is easy to reconstruct:
+
+`seed = m^7`
+
+At this point, we have exactly the same seed that was used by the challenge script.
+
+
+## Reversing the bit shuffling
+
+Recovering the seed is only the first part of the solution.  
+The next step is to undo the repeated `random.shuffle()` operations applied to the flag bits.
+
+Since the flag bits were shuffled 10 times, we must:
+1. reproduce the same shuffle for each round,
+2. build the inverse permutation,
+3. apply the inverse permutations in reverse order.
+
+This works because Python's shuffle is deterministic when the seed is known.
+
+So for each round, we recreate the shuffled index order, then use it to move every bit back to its original position.
+
+
+
+## Full solve script
+
+The script (solve.py)below:
+1. recovers the original message from `enc_seed`,
+2. reconstructs the seed,
+3. reverses all shuffle operations,
+4. converts the recovered bitstream back into bytes,
+5. prints the final flag.
+
+
+
+
 
