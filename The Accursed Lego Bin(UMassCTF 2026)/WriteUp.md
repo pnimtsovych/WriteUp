@@ -6,8 +6,11 @@
 
 #### What was important in encoder.py:
 variable e = 7
+
 function RSA_enc(plain_text)
+
 function get_flag_bits(flag)
+
 #### calculation:
 enc_seed = pow(seed, e, n)
 writing to the file:
