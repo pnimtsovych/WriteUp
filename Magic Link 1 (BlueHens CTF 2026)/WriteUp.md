@@ -15,7 +15,8 @@ User-agent: *
 Disallow: /inbox
 Disallow: /dashboard
 Disallow: /.env
-This was immediately suspicious. The entry for /.env suggested that the file existed on the server, and environment files frequently contain secrets, tokens, email addresses, or internal configuration data. That made it the most interesting path to test next.
+This was immediately suspicious. The entry for /.env suggested that the file existed on the server,
+ and environment files frequently contain secrets, tokens, email addresses, or internal configuration data. That made it the most interesting path to test next.
 
 I then requested the .env file directly:
 
