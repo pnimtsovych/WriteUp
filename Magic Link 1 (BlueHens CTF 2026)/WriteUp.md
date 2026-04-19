@@ -33,6 +33,7 @@ This means the real vulnerability was not in authentication, but in sensitive fi
 The application was serving its .env file over HTTP, which leaked internal configuration values that should never have been publicly accessible.
  In a real-world application, this kind of issue could expose API keys, database credentials, session secrets, internal service URLs, or authentication tokens.
 
-The main lesson from this challenge is that even when an application appears to revolve around a more complicated feature such as email login or token verification, it is still important to start with basic web recon. Simple mistakes like exposed configuration files can completely bypass the intended challenge path.
+The main lesson from this challenge is that even when an application appears to revolve around a more complicated feature such as email login or token verification,
+ it is still important to start with basic web recon. Simple mistakes like exposed configuration files can completely bypass the intended challenge path.
 
 Flag: udctf{d0n7_h057_y0ur_3nv_f113}
