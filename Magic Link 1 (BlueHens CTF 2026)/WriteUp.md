@@ -25,9 +25,13 @@ TEDDYS_EMAIL=teddy@udctf.com
 TEDDYS_TOKEN=udctf{d0n7_h057_y0ur_3nv_f113}
 ADMIN_EMAIL=admin@udctf.com
 INBOX_URL=http://localhost:5050/inbox?token=${TEDDYS_TOKEN}
-At that point the challenge was solved, because the flag was exposed directly in the environment configuration as the value of TEDDYS_TOKEN. No interaction with the actual magic-link flow was necessary.
 
-This means the real vulnerability was not in authentication, but in sensitive file exposure caused by a security misconfiguration. The application was serving its .env file over HTTP, which leaked internal configuration values that should never have been publicly accessible. In a real-world application, this kind of issue could expose API keys, database credentials, session secrets, internal service URLs, or authentication tokens.
+At that point the challenge was solved, because the flag was exposed directly in the environment configuration as the value of TEDDYS_TOKEN.
+ No interaction with the actual magic-link flow was necessary.
+
+This means the real vulnerability was not in authentication, but in sensitive file exposure caused by a security misconfiguration.
+The application was serving its .env file over HTTP, which leaked internal configuration values that should never have been publicly accessible.
+ In a real-world application, this kind of issue could expose API keys, database credentials, session secrets, internal service URLs, or authentication tokens.
 
 The main lesson from this challenge is that even when an application appears to revolve around a more complicated feature such as email login or token verification, it is still important to start with basic web recon. Simple mistakes like exposed configuration files can completely bypass the intended challenge path.
 
