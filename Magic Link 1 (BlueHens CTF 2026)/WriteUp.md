@@ -2,7 +2,8 @@
 
 Magic Link 1 was a simple web challenge that looked like it would involve attacking a magic-link authentication flow, but the actual solution was much easier. Instead of breaking the login logic, the flag could be recovered through a deployment misconfiguration.
 
-When opening the main page at `https://bluehens-magic-link.chals.io/`, the site displayed a basic magic link login form. Since there was no obvious vulnerability directly on the page, the next step was standard web reconnaissance. In challenges like this, it is always worth checking common auxiliary files and hidden paths such as `robots.txt`, `sitemap.xml`, `.git`, and `.env`, because they often reveal accidental information disclosure.
+When opening the main page at `https://bluehens-magic-link.chals.io/`, the site displayed a basic magic link login form. Since there was no obvious vulnerability directly on the page, the next step was standard web reconnaissance. 
+In challenges like this, it is always worth checking common auxiliary files and hidden paths such as `robots.txt`, `sitemap.xml`, `.git`, and `.env`, because they often reveal accidental information disclosure.
 
 The first useful result came from requesting `robots.txt`:
 
