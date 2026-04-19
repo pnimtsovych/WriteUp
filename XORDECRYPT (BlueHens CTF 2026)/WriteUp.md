@@ -1,24 +1,30 @@
-0x67.png — XOR Decrypt Challenge Writeup
-Challenge Description
+# 0x67.png — XOR Decrypt Challenge Writeup
 
-File: 0x67.png
-Hint: "I feel CHAINED to my desk, looking for some positive FEEDBACK"
-Flag format: UDCTF{}
+## Challenge Description
 
-Analysis
+- **File:** `0x67.png`
+- **Hint:** *"I feel CHAINED to my desk, looking for some positive FEEDBACK"*
+- **Flag format:** `UDCTF{}`
+
+## Analysis
+
 Two keywords in the hint stand out:
+- **CHAINED** → chained XOR (each byte depends on the previous one)
+- **FEEDBACK** → cipher feedback mode (CBC-style)
 
-CHAINED → chained XOR (each byte depends on the previous one)
-FEEDBACK → cipher feedback mode (CBC-style)
+The key `0x67` is hidden in the filename itself.
 
-The key 0x67 is hidden in the filename itself.
-A simple per-pixel XOR with 0x67 produces no result — the image stays noisy. The hint tells us we need CBC-style chaining, applied separately per RGB channel:
+A simple per-pixel XOR with `0x67` produces no result — the image stays noisy. The hint tells us we need **CBC-style chaining**, applied **separately per RGB channel**:
 
+```
 decrypted[0] = cipher[0] XOR 0x67
 decrypted[i] = cipher[i] XOR cipher[i-1]
+```
 
-Solution
-pythonfrom PIL import Image
+## Solution
+
+```python
+from PIL import Image
 import numpy as np
 from scipy.ndimage import gaussian_filter
 
@@ -49,10 +55,15 @@ stretched = ((crop - mn) / (mx - mn) * 255).astype(np.uint8)
 Image.fromarray(stretched).resize(
     (stretched.shape[1]*8, stretched.shape[0]*8), Image.LANCZOS
 ).save('flag_text.png')
+```
+
 The decrypted image reveals a landscape photo with the flag embedded as text in the middle:
 
+<img width="900" height="200" alt="preview" src="https://github.com/user-attachments/assets/74a214a8-95fa-4efb-80f1-32d23a2b36b6" />
 
-<img width="900" height="200" alt="preview" src="https://github.com/user-attachments/assets/623a2981-195d-4651-8b7d-6be6af0f8c3b" />
 
-Flag
+## Flag
+
+```
 UDCTF{x0r_T0_Th3_Fla@g}
+```
